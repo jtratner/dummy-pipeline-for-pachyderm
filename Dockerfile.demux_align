@@ -1,0 +1,4 @@
+FROM centos:7
+ENV COUNSYL_SOFTWARE_VERSION demux_alignv1.5
+RUN echo $VERSION > version.txt
+COPY dummy_demux.py /usr/bin/demux

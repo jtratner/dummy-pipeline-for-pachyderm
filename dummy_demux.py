@@ -13,14 +13,16 @@ if args.wait_time:
     time.sleep(args.wait_time)
 
 input_data = []
+output_directory = args.output_dir
 for root, _, files in os.walk(args.input_dir):
     for f in files:
         o = os.path.join(root, f)
         with open(o) as fp:
             input_data.append(fp.read())
+            output_directory = os.path.join(args.output_dir, os.path.basename(root))
 
 for i in range(args.num_samples):
-    pth = os.path.join(args.output_dir, 's_%d_AAAA' % i)
+    pth = os.path.join(output_directory, 's_%d_AAAA' % i)
     with open(pth, 'w') as fp:
         for i in input_data:
             fp.write(i)

@@ -11,9 +11,19 @@ parser.add_argument('--wait-time', type=int, default=0)
 args = parser.parse_args()
 if args.wait_time:
     time.sleep(args.wait_time)
+
+input_data = []
+for root, _, files in os.walk(args.input_dir):
+    for f in files:
+        o = os.path.join(root, f)
+        with open(o) as fp:
+            input_data.append(fp.read())
+
 for i in range(args.num_samples):
     pth = os.path.join(args.output_dir, 's_%d_AAAA' % i)
     with open(pth, 'w') as fp:
+        for i in input_data:
+            fp.write(i)
         fp.write('%s,%s,%s' % (os.environ['COUNSYL_SOFTWARE_VERSION'],
                                  datetime.datetime.utcnow(), time.time()))
     print 'Wrote to %s' % pth

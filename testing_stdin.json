@@ -1,0 +1,16 @@
+{
+    "pipeline": {"name": "testing-stdout"},
+    "transform": {
+        "image": "centos:7",
+        "cmd": ["/bin/bash"],
+        "stdin": [
+            "echo $(find /pfs -type f)"
+        ]
+    },
+    "input": {
+        "atom": {
+            "repo": "something",
+            "glob": "/*"
+        }
+    }
+}

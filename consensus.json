@@ -1,0 +1,18 @@
+{
+    "pipeline": {
+        "name": "consensus"
+    },
+    "transform": {
+        "image": "consensus:v1",
+        "cmd": ["/bin/bash"],
+        "stdin": [
+            "/usr/bin/consensus $line $OUTDIR"
+        ]
+    },
+    "input": {
+        "atom": {
+            "repo": "grouped",
+            "glob": "/*/*"
+        }
+    }
+}

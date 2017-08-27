@@ -1,0 +1,24 @@
+{
+    "pipeline": {
+        "name": "freebayes"
+    },
+    "transform": {
+        "image": "freebayes:v1.5",
+        "cmd": ["/bin/bash"],
+        "stdin": [
+            "for line in $(find /pfs -type f); do",
+                "echo \"Running $line\"",
+                "export OUTDIR=$(dirname $line | sed 's@/pfs/demux@/pfs/out@g')",
+                "echo $OUTDIR",
+                "mkdir -p $OUTDIR",
+                "/usr/bin/caller $line $OUTDIR",
+            "done"
+        ]
+    },
+    "input": {
+        "atom": {
+            "repo": "demux",
+            "glob": "/*/*"
+        }
+    }
+}

@@ -21,6 +21,8 @@ for root, _, files in os.walk(args.input_dir):
             input_data.append(fp.read())
             output_directory = os.path.join(args.output_dir, os.path.basename(root))
 
+if not os.path.exists(output_directory):
+    os.makedirs(output_directory)
 for i in range(args.num_samples):
     pth = os.path.join(output_directory, 's_%d_AAAA' % i)
     with open(pth, 'w') as fp:

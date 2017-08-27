@@ -1,0 +1,20 @@
+{
+    "pipeline": {
+        "name": "gatk"
+    },
+    "transform": {
+        "cmd": ["/bin/bash"],
+        "image": "gatk:v1.25",
+        "stdin": [
+            "for fpath in $(find /pfs/demux -type f); do",
+                "/usr/bin/caller $fpath $(dirname $fpath | sed 's!/pfs/demux!/pfs/out!g')",
+            "done"
+        ]
+    },
+    "input": {
+        "atom": {
+            "repo": "demux",
+            "glob": "/*/*"
+        }
+    }
+}

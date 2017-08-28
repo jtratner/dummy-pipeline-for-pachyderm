@@ -1,10 +1,10 @@
 {
     "pipeline": {
-        "name": "group-test"
+        "name": "group{{suffix}}"
     },
     "transform": {
         "image": "centos:7",
-        "cmd": ["/bin/bash"],
+        "cmd": ["/bin/bash", "-x"],
         "stdin": [
             "for INDIR in $(find /pfs -type d -mindepth 1 -maxdepth 1 | grep -v out); do",
                 "export INNAME=$(basename $INDIR)",
@@ -18,15 +18,18 @@
     },
     "input": {
         "union": [{"atom": {
-            "repo": "freebayes",
+            "name": "freebayes",
+            "repo": "freebayes{{suffix}}",
             "glob": "/*/*",
             "lazy": true
         }},{"atom": {
-            "repo": "gatk",
+            "name": "gatk",
+            "repo": "gatk{{suffix}}",
             "glob": "/*/*",
             "lazy": true
         }},{"atom": {
-            "repo": "probe_counts",
+            "name": "probe-counts",
+            "repo": "probe-counts{{suffix}}",
             "glob": "/*/*",
             "lazy": true
         }}]

@@ -1,10 +1,10 @@
 {
     "pipeline": {
-        "name": "gatk"
+        "name": "gatk{{suffix}}"
     },
     "transform": {
         "cmd": ["/bin/bash"],
-        "image": "gatk:v5",
+        "image": "gatk:{{version}}",
         "stdin": [
             "for line in $(find /pfs -type f); do",
             "echo \"Running $line\"",
@@ -18,7 +18,7 @@
     "input": {
         "atom": {
             "name": "input",
-            "repo": "demux",
+            "repo": "demux{{suffix}}",
             "glob": "/*/*"
         }
     }

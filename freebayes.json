@@ -1,9 +1,9 @@
 {
     "pipeline": {
-        "name": "freebayes"
+        "name": "freebayes{{suffix}}"
     },
     "transform": {
-        "image": "freebayes:v2",
+        "image": "freebayes:{{version}}",
         "cmd": ["/bin/bash"],
         "stdin": [
             "for line in $(find /pfs -type f); do",
@@ -18,7 +18,7 @@
     "input": {
         "atom": {
             "name": "input",
-            "repo": "demux",
+            "repo": "demux{{suffix}}",
             "glob": "/*/*"
         }
     }

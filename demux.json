@@ -1,14 +1,14 @@
 {
     "pipeline": {
-        "name": "demux"
+        "name": "demux2"
     },
     "transform": {
-        "cmd": ["/usr/bin/demux", "/pfs/flowcells", "/pfs/out"],
+        "cmd": ["/usr/bin/demux", "/pfs/flowcells-2", "/pfs/out"],
         "image": "demux:v4"
     },
     "input": {
         "atom": {
-            "repo": "flowcells",
+            "repo": "flowcells-2",
             "glob": "/*"
         }
     }

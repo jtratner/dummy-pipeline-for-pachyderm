@@ -1,5 +1,6 @@
 FROM centos:7
+ARG software_name=gatk
 ARG version
-ENV COUNSYL_SOFTWARE_VERSION $version
+ENV COUNSYL_SOFTWARE_VERSION $software_name$version
 RUN echo $VERSION > version.txt
 COPY dummy_caller.py /usr/bin/caller

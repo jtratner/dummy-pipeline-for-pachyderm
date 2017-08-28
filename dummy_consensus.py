@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import argparse
 import os
 import time
@@ -7,6 +8,7 @@ parser.add_argument('--gatk-vcf', required=True)
 parser.add_argument('--freebayes-vcf', required=True)
 parser.add_argument('--probe-counts', required=True)
 parser.add_argument('--out', required=True)
+parser.add_argument('--wait-time', default=0, type=int)
 args = parser.parse_args()
 print args
 if args.wait_time:

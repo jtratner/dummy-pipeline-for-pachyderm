@@ -2,4 +2,4 @@ FROM centos:7
 ARG version
 ENV COUNSYL_SOFTWARE_VERSION $version
 RUN echo $VERSION > version.txt
-COPY dummy_consensus.py /usr/bin/consensus
+COPY dummy_counts.py /usr/bin/count_probes

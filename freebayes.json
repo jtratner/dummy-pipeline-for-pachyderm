@@ -3,20 +3,21 @@
         "name": "freebayes"
     },
     "transform": {
-        "image": "freebayes:v1.5",
+        "image": "freebayes:v2",
         "cmd": ["/bin/bash"],
         "stdin": [
             "for line in $(find /pfs -type f); do",
                 "echo \"Running $line\"",
-                "export OUTDIR=$(dirname $line | sed 's@/pfs/demux@/pfs/out@g')",
+                "export OUTDIR=$(dirname $line | sed 's@/pfs/input@/pfs/out@g')",
                 "echo $OUTDIR",
                 "mkdir -p $OUTDIR",
-                "/usr/bin/caller $line $OUTDIR",
+                "/usr/bin/caller $line $OUTDIR/freebayes.vcf",
             "done"
         ]
     },
     "input": {
         "atom": {
+            "name": "input",
             "repo": "demux",
             "glob": "/*/*"
         }

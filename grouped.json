@@ -1,0 +1,34 @@
+{
+    "pipeline": {
+        "name": "group-test"
+    },
+    "transform": {
+        "image": "centos:7",
+        "cmd": ["/bin/bash"],
+        "stdin": [
+            "for INDIR in $(find /pfs -type d -mindepth 1 -maxdepth 1 | grep -v out); do",
+                "export INNAME=$(basename $INDIR)",
+                "for FPATH in $(find $INDIR -not -type d); do",
+                    "export OUTPATH=/pfs/out${FPATH#$INDIR}",
+                    "mkdir -p $(dirname $OUTPATH)",
+                    "ln -sfvn $FPATH $OUTPATH",
+                "done",
+            "done"
+        ]
+    },
+    "input": {
+        "union": [{"atom": {
+            "repo": "freebayes",
+            "glob": "/*/*",
+            "lazy": true
+        }},{"atom": {
+            "repo": "gatk",
+            "glob": "/*/*",
+            "lazy": true
+        }},{"atom": {
+            "repo": "probe_counts",
+            "glob": "/*/*",
+            "lazy": true
+        }}]
+    }
+}

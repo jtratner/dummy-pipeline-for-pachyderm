@@ -1,17 +1,19 @@
 {
     "pipeline": {
-        "name": "consensus"
+        "name": "consensus-test"
     },
     "transform": {
-        "image": "consensus:v1",
+        "image": "consensus:v3",
         "cmd": ["/bin/bash"],
         "stdin": [
-            "/usr/bin/consensus $line $OUTDIR"
+            "export SAMPLE_DIR=$(find /pfs/input -name '*.gatk' | head -n 1 | xargs dirname)",
+            "/usr/bin/consensus --gatk-vcf=$(find /pfs/input -name '*.gatk') --freebayes-vcf=$(find /pfs/input -name '*.freebayes') --probe-counts=$(find /pfs/input -name '*.probe_counts') --out=$(find /pfs/input -name '*.gatk') --out=$SAMPLE_DIR/consensus.vcf"
         ]
     },
     "input": {
         "atom": {
-            "repo": "grouped",
+            "name": "input",
+            "repo": "group-test",
             "glob": "/*/*"
         }
     }

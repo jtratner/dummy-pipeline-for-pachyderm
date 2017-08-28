@@ -3,7 +3,7 @@
         "name": "probe_counts"
     },
     "transform": {
-        "image": "probecounts:v1",
+        "image": "probecounts:v4",
         "cmd": ["/bin/bash"],
         "stdin": [
             "for line in $(find /pfs -type f); do",

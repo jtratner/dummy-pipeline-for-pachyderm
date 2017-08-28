@@ -16,8 +16,9 @@ with open(args.input) as fp:
 
 additional_data = '%s,%s,%s' % (os.environ['COUNSYL_SOFTWARE_VERSION'],
                                   datetime.datetime.utcnow(), time.time())
-output_name = os.path.basename(args.input) + '.probe_counts.json'
-with open(os.path.join(args.output_dir, os.path.basename(args.input), 'probe_counts.json'), 'w') as fp:
+out_dir = os.path.join(args.output_dir, os.path.basename(args.input))
+os.makedirs(out_dir)
+with open(os.path.join(out_dir, 'probe_counts.json'), 'w') as fp:
     print 'Writing to %s' % fp.name
     fp.write(initial_data)
     fp.write('\n')

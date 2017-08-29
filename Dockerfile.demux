@@ -1,5 +1,5 @@
 FROM centos:7
 ARG version
-ENV COUNSYL_SOFTWARE_VERSION $version
+ENV COUNSYL_SOFTWARE_VERSION demux$version
 RUN echo $VERSION > version.txt
 COPY dummy_demux.py /usr/bin/demux

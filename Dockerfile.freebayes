@@ -1,6 +1,6 @@
 FROM centos:7
 ARG software_name=freebayes
 ARG version
-ENV COUNSYL_SOFTWARE_VERSION $software_name$version
+ENV COUNSYL_SOFTWARE_VERSION freebayes$version
 RUN echo $VERSION > version.txt
 COPY dummy_caller.py /usr/bin/caller

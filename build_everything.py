@@ -1,10 +1,10 @@
 #!/usr/bin/python
 import os
 import jinja2
-DEFAULT_VERSION="v2"
-SUFFIX="3"
+DEFAULT_VERSION="v3"
+SUFFIX="4"
 VERSION_MAP = {
-    'demux': 'v3'
+    'demux': 'v4'
 }
 OUTPUT_DIR = os.path.join('.', 'pipelines-v%s' % SUFFIX)
 if not os.path.exists(OUTPUT_DIR):

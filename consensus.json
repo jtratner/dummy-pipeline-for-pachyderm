@@ -4,10 +4,12 @@
     },
     "transform": {
         "image": "consensus:{{version}}",
-        "cmd": ["/bin/bash"],
+        "cmd": ["/bin/bash", "-x"],
         "stdin": [
-            "export SAMPLE_DIR=$(find /pfs/input -name '*.gatk' | head -n 1 | xargs dirname)",
-            "/usr/bin/consensus --gatk-vcf=$(find /pfs/input -name '*.gatk') --freebayes-vcf=$(find /pfs/input -name '*.freebayes') --probe-counts=$(find /pfs/input -name '*.probe_counts') --out=$(find /pfs/input -name '*.gatk') --out=$SAMPLE_DIR/consensus.vcf"
+            "export SAMPLE_DIR=$(find /pfs/input -name 'gatk.vcf' | head -n 1 | xargs dirname)",
+            "export OUT_DIR=$(echo $SAMPLE_DIR | sed 's@/pfs/input@/pfs/out@g')",
+            "mkdir -p $OUT_DIR",
+            "/usr/bin/consensus --gatk-vcf=$SAMPLE_DIR/gatk.vcf --freebayes-vcf=$SAMPLE_DIR/freebayes.vcf --probe-counts=$SAMPLE_DIR/probe_counts.json --out=$OUT_DIR/consensus.vcf"
         ]
     },
     "input": {
